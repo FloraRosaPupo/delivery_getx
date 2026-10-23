@@ -3,7 +3,9 @@
 Interface de cardápio e carrinho de compras.
 
 ## Stack e organização
-Flutter/Dart, GetX. O estado do carrinho está em `lib/controllers/carrinho_controller.dart`. O projeto demonstra o fluxo de compra; não integra pagamento real.
+Flutter/Dart e GetX.
+
+Catálogo, carrinho e checkout estão agrupados por funcionalidade. Regras de quantidade/total seguem no controller do carrinho. GetX foi mantido como mecanismo existente; não há ganho em uma migração de estado junto com uma reorganização sem necessidade funcional.
 
 ## Executar
 Use a versão de Flutter registrada em `.github/workflows/ci.yml`.
@@ -26,3 +28,17 @@ Abra uma branch por alteração, descreva o comportamento esperado e inclua test
 
 ## Licença
 Não há licença de distribuição definida neste repositório.
+
+
+## Funcionalidades
+
+- Catálogo.
+- carrinho.
+- formulário de checkout demonstrativo.
+
+
+## Organização e manutenção
+
+Catálogo, carrinho e checkout estão agrupados por funcionalidade. Regras de quantidade/total seguem no controller do carrinho. GetX foi mantido como mecanismo existente; não há ganho em uma migração de estado junto com uma reorganização sem necessidade funcional.
+
+Veja [a revisão de desenvolvimento](docs/REVISAO.md) para decisões, testes e limites, e [o guia de contribuição](CONTRIBUTING.md) para o fluxo de manutenção.

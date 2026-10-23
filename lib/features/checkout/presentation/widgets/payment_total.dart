@@ -13,10 +13,10 @@ class PaymentTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const Text("Total:",
-                  style: TextStyle(color: Color(0xFF9D9D9D))),
+              const Text("Total:", style: TextStyle(color: Color(0xFF9D9D9D))),
               Text("R\$ ${total.toStringAsFixed(2)}",
-                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 16)),
             ],
           ),
         ),

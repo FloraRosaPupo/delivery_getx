@@ -1,10 +1,9 @@
-import 'package:delivery/controllers/carrinho_controller.dart';
+import 'package:delivery/features/cart/presentation/controllers/carrinho_controller.dart';
 import 'package:delivery/utils/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../models/item.dart';
+import '../../../../catalog/domain/item.dart';
 import 'cartao_controller.dart';
-
 
 class Cartao extends StatefulWidget {
   Cartao({Key? key, required this.item}) : super(key: key);
@@ -19,18 +18,19 @@ class _CartaoState extends State<Cartao> {
   late CartoaController controller; //late pq eu ainda nao inicializei ele
 
   //instancia ja existe
-  final CarrinhoController controllerCarrinho = Get.find<CarrinhoController>(); //busque por um controller ja existente
-                                                        //<tipando>
-  
+  final CarrinhoController controllerCarrinho =
+      Get.find<CarrinhoController>(); //busque por um controller ja existente
+  //<tipando>
+
   @override
   void initState() {
     super.initState();
     //assim q o item é inicializado
-    controller = Get.put(CartoaController(), tag: widget.item.nome );
+    controller = Get.put(CartoaController(), tag: widget.item.nome);
   }
 
-  /*Get.put -> esta associando o controller ao nosso Cartão 
-  tag-> nomear intancias (pares de cartao e cartaocontroller) - precisa ser um valor unico 
+  /*Get.put -> esta associando o controller ao nosso Cartão
+  tag-> nomear intancias (pares de cartao e cartaocontroller) - precisa ser um valor unico
   */
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class _CartaoState extends State<Cartao> {
                       InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
-                          if(controller.counter>0 ){
+                          if (controller.counter > 0) {
                             controller.decrement();
                             controllerCarrinho.removeFromCart(widget.item);
                             AppSnackBars.getRemoveItem(widget.item);
@@ -83,14 +83,14 @@ class _CartaoState extends State<Cartao> {
                         ),
                       ),
                       //metodo proprio do Get - observar um observavel
-                      Obx(()=> Text(controller.counter.toString())),
+                      Obx(() => Text(controller.counter.toString())),
                       InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
                           controller.increment();
                           controllerCarrinho.addtoCart(widget.item);
                           AppSnackBars.getAddItem(widget.item);
-                          },
+                        },
                         child: const Icon(
                           Icons.add_circle_outline,
                           size: 20,

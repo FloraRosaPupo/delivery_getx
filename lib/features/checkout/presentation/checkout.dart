@@ -1,14 +1,14 @@
 import 'package:delivery/utils/snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/order_item.dart';
-import '../controllers/carrinho_controller.dart';
-import 'home.dart';
-import '../components/payment_method.dart';
-import '../components/payment_total.dart';
+import '../../cart/presentation/widgets/order_item.dart';
+import '../../cart/presentation/controllers/carrinho_controller.dart';
+import '../../catalog/presentation/home.dart';
+import 'widgets/payment_method.dart';
+import 'widgets/payment_total.dart';
 
 class Checkout extends StatelessWidget {
-   Checkout({Key? key}) : super(key: key);
+  Checkout({Key? key}) : super(key: key);
 
   final CarrinhoController controllerCarrinho = Get.find<CarrinhoController>();
 
@@ -31,9 +31,8 @@ class Checkout extends StatelessWidget {
               ),
               SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
-                    return OrderItem(item: controllerCarrinho.carrinho[index]);
-                  },
-                      childCount: controllerCarrinho.carrinho.length)),
+                return OrderItem(item: controllerCarrinho.carrinho[index]);
+              }, childCount: controllerCarrinho.carrinho.length)),
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 8.0),
@@ -55,7 +54,8 @@ class Checkout extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(child: PaymentTotal(total: controllerCarrinho.total.value)),
+              SliverToBoxAdapter(
+                  child: PaymentTotal(total: controllerCarrinho.total.value)),
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Align(
@@ -64,12 +64,14 @@ class Checkout extends StatelessWidget {
                       onPressed: () {
                         AppSnackBars.getPaymen();
 
-                        Get.offAll(()=>Home());//Limpa toda stack de navegação Get.back();
+                        Get.offAll(() =>
+                            Home()); //Limpa toda stack de navegação Get.back();
                       },
                       style: ElevatedButton.styleFrom(
                           elevation: 0,
                           foregroundColor: Colors.white,
-                          backgroundColor: Theme.of(context).colorScheme.surfaceTint),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surfaceTint),
                       child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
