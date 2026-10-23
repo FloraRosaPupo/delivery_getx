@@ -1,11 +1,8 @@
-import 'package:delivery/models/item.dart';
+import 'package:delivery/features/catalog/domain/item.dart';
 import 'package:flutter/material.dart';
 
 class OrderItem extends StatelessWidget {
-  const OrderItem(
-      {Key? key,
-      required this.item})
-      : super(key: key);
+  const OrderItem({Key? key, required this.item}) : super(key: key);
   final Item item;
 
   @override
@@ -33,7 +30,10 @@ class OrderItem extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Text(item.nome, style: const TextStyle(fontWeight: FontWeight.w600),),
+                    child: Text(
+                      item.nome,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ),
                   Text(item.preco.toStringAsFixed(2)),
                 ],
